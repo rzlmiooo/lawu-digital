@@ -1,102 +1,82 @@
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowUpRightIcon } from "@heroicons/react/16/solid";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+    <div id="home" className="flex flex-col h-screen bg-white overflow-x-hidden">
+      <header className="flex justify-center items-center">
+        <nav className="flex justify-center items-center gap-16">
+          <Link href="/">
+            <Image src="/logo-dark.png" alt="Logo" width={100} height={100} className="w-20 h-20"></Image>
+          </Link>
+          <ul className="flex gap-14 text-sm">
+            <Link href='/' className="text-black">Beranda</Link>
+            <a href='#projects' className="text-black">Portfolio</a>
+            <a href='#cta' className="text-black">Tentang Kami</a>
+            <a href='#footer' className="text-black">Hubungi</a>
+          </ul>
+        </nav>
+      </header>
+      <main className="flex flex-col bg-white">
+        {/* hero section */}
+        <section className="relative flex justify-center items-center gap-5">
+          <div className="px-40 py-40">
+            <h1 className="text-black text-6xl/18">Transformasi digital, tanpa ribet.</h1>
+          </div>
+          <div className="px-60 py-40">
+            <Image src="/hero.png" alt="Hero" width={500} height={500} className="absolute top-0 right-0 size-150 object-contain"></Image>
+          </div>
+        </section>
+        {/* portofolio section */}
+        <section className="flex flex-col gap-10 py-40">
+          <div className="flex flex-col gap-2 justify-center items-center text-black">
+            <h2 id="projects" className="text-6xl">Puncak <span className="italic">Lawu</span>, Puncak <span className="italic">Digitalisasi</span></h2>
+            <h3 className="text-2xl">Kami belajar. Beradaptasi. Menuju puncak.</h3>
+          </div>
+          <div className="relative flex justify-center items-end">
+            <svg className="absolute bottom-0 left-0 z-0" width="284" height="270" viewBox="0 0 284 270" fill="none" xmlns="http://www.w3.org/  2000/svg">
+              <path d="M128 0L283.885 270H-27.8846L128 0Z" fill="black"/>
+            </svg>
+            <Image src="/sejiwa.png" alt="Sejiwa" width={100} height={100} className="z-1 w-100 h-100 border-3 border-r-0 border-black object-cover object-top"></Image>
+            <Image src="/polsek.png" alt="Polsek" width={100} height={100} className="z-1 w-100 h-100 border-3 border-black object-cover object-top"></Image>
+            <svg className="absolute bottom-0 right-0 z-0" width="396" height="405" viewBox="0 0 396 405" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M234 0L467.827 404.25L0.173141 404.25L234 0Z" fill="black"/>
+            </svg>
+          </div>
+          <div className="flex justify-center gap-76">
+            <h5 className="-m-5 text-xl text-black italic">Sejiwa App</h5>
+            <h5 className="-m-5 text-xl text-black italic">Polsek Bendo</h5>
+          </div>
+        </section>
+        {/* cta section */}
+        <section className="relative flex flex-col justify-center items-center py-10">
+          <div className="grid grid-cols-2 pl-60 py-30 justify-center items-center">
+            <h2 id="cta" className="flex justify-center items-center text-6xl text-black">Selanjutnya, adalah Anda.</h2>
+            <h2 className="flex justify-center items-center text-6xl text-black">Wujudkan web/aplikasi impian Anda.</h2>
+          </div>
+          <div>
+            <Link href="/" className="my-20 flex gap-2 justify-center items-center text-5xl text-black">
+              Bersama <Image src="/logo-dark.png" alt="Logo" width={100} height={100} className="size-36"></Image> <ArrowUpRightIcon className="bg-black text-white size-8 rotate-45"/>
+            </Link>
+          </div>
+          <svg className="absolute bottom-0 left-0 z-0" width="362" height="405" viewBox="0 0 362 405" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 0L361.827 404.25L-105.827 404.25L128 0Z" fill="black"/>
+          </svg>
+          <svg className="absolute bottom-0 right-0 z-0" width="299" height="270" viewBox="0 0 299 270" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M156 0L311.885 270H0.115433L156 0Z" fill="black"/>
+          </svg>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      <footer className="flex bg-black -m-1 py-100">
+        <div id="contact" className="flex flex-col">
+          <div className="text-white">hai</div>
+          <div className=""></div>
+        </div>
+        <div className="flex flex-col">
+          <div className=""></div>
+          <div className=""></div>
+        </div>
       </footer>
     </div>
   );
