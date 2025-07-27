@@ -83,26 +83,26 @@ export default function Home() {
         <div id="contact" className="flex flex-col justify-center items-start gap-10">
           <ul className="flex flex-col gap-4 text-white text-2xl">
             <li className="font-bold">Eksplor</li>
-            <li><a href="/">Beranda</a></li>
-            <li><a href="/">Portfolio</a></li>
-            <li><a href="/">Tentang Kami</a></li>
-            <li><a href="/">Hubungi</a></li>
+            <li><a href="#">Beranda</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">Tentang Kami</a></li>
+            <li><a href="#">Hubungi</a></li>
           </ul>
           <ul className="flex flex-col gap-4 text-white text-xl">
-            <li><a href="/"><Image src="/logo-light.png" alt="Logo" width={200} height={100} className="size-50 -my-15 -ml-5 object-contain"></Image></a></li>
+            <li><a href="#"><Image src="/logo-light.png" alt="Logo" width={200} height={100} className="size-50 -my-15 -ml-5 object-contain"></Image></a></li>
             <li>&copy;2025 Lawu Digital</li>
           </ul>
         </div>
         <div className="flex flex-col justify-between items-start gap-10">
           <ul className="flex flex-col gap-4 text-white text-2xl">
             <li className="font-bold">Kontak Kami</li>
-            <li><a href="/" className="flex items-center gap-2"><Image src="/gmail.svg" alt="WA" width={50} height={50} className="size-5"></Image>sejiwa718@gmail.com</a></li>
-            <li><a href="/" className="flex items-center gap-2"><Image src="/WhatsApp.svg" alt="WA" width={50} height={50} className="size-5"></Image>Rizal - 081515756691</a></li>
-            <li><a href="/" className="flex items-center gap-2"><Image src="/WhatsApp.svg" alt="WA" width={50} height={50} className="size-5"></Image>Alfan - 085710859720</a></li>
+            <li><a href="#" className="flex items-center gap-2"><Image src="/gmail.svg" alt="WA" width={50} height={50} className="size-5"></Image>sejiwa718@gmail.com</a></li>
+            <li><a href="#" className="flex items-center gap-2"><Image src="/WhatsApp.svg" alt="WA" width={50} height={50} className="size-5"></Image>Rizal - 081515756691</a></li>
+            <li><a href="#" className="flex items-center gap-2"><Image src="/WhatsApp.svg" alt="WA" width={50} height={50} className="size-5"></Image>Alfan - 085710859720</a></li>
           </ul>
           <ul className="flex flex-col gap-4 text-white text-2xl w-100">
             <li className="font-bold">Alamat Kami</li>
-            <li><a href="/">Ds. Lorem Ipsum Jalan Sigma Mewing, Kecamatan Lorem, Kabupaten Ipsum, Jawa Timur 69420</a></li>
+            <li><a href="#">Ds. Lorem Ipsum Jalan Sigma Mewing, Kecamatan Lorem, Kabupaten Ipsum, Jawa Timur 69420</a></li>
           </ul>
         </div>
       </footer>
