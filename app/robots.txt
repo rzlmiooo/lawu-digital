@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://lawu-digital.vercel.app/sitemap.ts
