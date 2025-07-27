@@ -8,7 +8,7 @@ export default function Home() {
       <header className="flex justify-center items-center">
         <nav className="flex justify-center items-center gap-16">
           <Link href="/">
-            <Image src="/logo-dark.png" alt="Logo" width={100} height={100} className="w-30 h-20 object-cover"></Image>
+            <Image src="/logo-dark.png" alt="Logo" width={100} height={100} priority className="w-30 h-20 object-cover"></Image>
           </Link>
           <ul className="flex gap-14 text-md">
             <Link href='/' className="text-black">Beranda</Link>
@@ -25,7 +25,7 @@ export default function Home() {
             <h1 className="text-black text-6xl/18">Transformasi digital, tanpa ribet.</h1>
           </div>
           <div className="px-60 py-40">
-            <Image src="/hero.png" alt="Hero" width={500} height={500} className="absolute top-0 right-0 size-150 object-contain"></Image>
+            <Image src="/hero.png" alt="Hero" width={500} height={500} priority className="absolute top-0 right-0 size-150 object-contain"></Image>
           </div>
         </section>
         {/* about section */}
