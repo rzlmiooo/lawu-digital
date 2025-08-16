@@ -12,7 +12,9 @@ export default function Home() {
           </Link>
           <ul className="flex gap-14 text-md">
             <Link href='/' className="text-black">Beranda</Link>
-            <a href='#projects' className="text-black">Portfolio</a>
+            <a href='/news' className="text-black">News</a>
+            <a href='/projects' className="text-black">Layanan</a>
+            <a href='/portofolio' className="text-black">Portfolio</a>
             <a href='#cta' className="text-black">Tentang Kami</a>
             <a href='#footer' className="text-black">Hubungi</a>
           </ul>
