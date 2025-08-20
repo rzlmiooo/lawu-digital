@@ -1,25 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import { ArrowUpRightIcon } from "@heroicons/react/16/solid";
 
 export default function Home() {
   return (
     <div id="home" className="flex flex-col h-screen bg-white overflow-x-hidden">
-      <header className="flex justify-center items-center">
-        <nav className="flex justify-center items-center gap-16">
-          <Link href="/">
-            <Image src="/logo-dark.png" alt="Logo" width={100} height={100} priority className="w-30 h-20 object-cover"></Image>
-          </Link>
-          <ul className="flex gap-14 text-md">
-            <Link href='/' className="text-black">Beranda</Link>
-            <a href='/news' className="text-black">News</a>
-            <a href='/projects' className="text-black">Layanan</a>
-            <a href='/portofolio' className="text-black">Portfolio</a>
-            <a href='#cta' className="text-black">Tentang Kami</a>
-            <a href='#footer' className="text-black">Hubungi</a>
-          </ul>
-        </nav>
-      </header>
+      <Navbar/>
       <main className="flex flex-col bg-white">
         {/* hero section */}
         <section className="relative flex justify-center items-center gap-5">
@@ -81,33 +69,7 @@ export default function Home() {
           </svg>
         </section>
       </main>
-      <footer className="flex gap-20 justify-evenly items-start bg-black -mt-1 px-40 pr-20 py-40">
-        <div id="contact" className="flex flex-col justify-center items-start gap-10">
-          <ul className="flex flex-col gap-4 text-white text-2xl">
-            <li className="font-bold">Eksplor</li>
-            <li><a href="#">Beranda</a></li>
-            <li><a href="#">Portfolio</a></li>
-            <li><a href="#">Tentang Kami</a></li>
-            <li><a href="#">Hubungi</a></li>
-          </ul>
-          <ul className="flex flex-col gap-4 text-white text-xl">
-            <li><a href="#"><Image src="/logo-light.png" alt="Logo" width={200} height={100} className="size-50 -my-15 -ml-5 object-contain"></Image></a></li>
-            <li>&copy;2025 Lawu Digital</li>
-          </ul>
-        </div>
-        <div className="flex flex-col justify-between items-start gap-10">
-          <ul className="flex flex-col gap-4 text-white text-2xl">
-            <li className="font-bold">Kontak Kami</li>
-            <li><a href="#" className="flex items-center gap-2"><Image src="/gmail.svg" alt="WA" width={50} height={50} className="size-5"></Image>sejiwa718@gmail.com</a></li>
-            <li><a href="#" className="flex items-center gap-2"><Image src="/WhatsApp.svg" alt="WA" width={50} height={50} className="size-5"></Image>Rizal - 081515756691</a></li>
-            <li><a href="#" className="flex items-center gap-2"><Image src="/WhatsApp.svg" alt="WA" width={50} height={50} className="size-5"></Image>Alfan - 085710859720</a></li>
-          </ul>
-          <ul className="flex flex-col gap-4 text-white text-2xl w-100">
-            <li className="font-bold">Alamat Kami</li>
-            <li><a href="#">Ds. Lorem Ipsum Jalan Sigma Mewing, Kecamatan Lorem, Kabupaten Ipsum, Jawa Timur 69420</a></li>
-          </ul>
-        </div>
-      </footer>
+      <Footer/>
     </div>
   );
 }

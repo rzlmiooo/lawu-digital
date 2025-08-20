@@ -29,10 +29,10 @@ export default function Navbar() {
                             <Link href='/portofolio' className="text-black">Portfolio</Link>
                         </li>
                         <li>
-                            <a href='#cta' className="text-black">Tentang Kami</a>
+                            <Link href='#cta' className="text-black">Tentang Kami</Link>
                         </li>
                         <li>
-                            <a href='#footer' className="text-black">Hubungi</a>
+                            <Link href='#footer' className="text-black">Hubungi</Link>
                         </li>
                     </ul>
                 </nav>
