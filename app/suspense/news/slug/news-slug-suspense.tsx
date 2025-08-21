@@ -1,8 +1,8 @@
-import purify from 'isomorphic-dompurify';
-import { notFound } from 'next/navigation';
 import { News } from '@/app/interfaces/news-interface';
-import Navbar from '@/app/components/Navbar';
+import NavbarDark from '@/app/components/dark/Navbar';
 import Footer from '@/app/components/Footer';
+import { notFound } from 'next/navigation';
+import purify from 'isomorphic-dompurify';
 
 export default async function NewsDetail(props: { params: { slug: string } }) {
   const { slug } = await props.params;
@@ -20,7 +20,7 @@ export default async function NewsDetail(props: { params: { slug: string } }) {
 
     return (
       <div className="prose mx-auto p-6">
-        <Navbar/>
+        <NavbarDark/>
         {newsData.map((article) => (
           <div key={article.id} className="prose mx-auto p-6">
             <h1>{article.title}</h1>
