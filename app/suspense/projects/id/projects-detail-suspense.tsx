@@ -2,7 +2,7 @@ import React from 'react';
 import { notFound } from 'next/navigation';
 import { getProjectById, getProjectsData } from '@/app/api/projects/projects';
 import { Project } from '@/app/interfaces/project-interface';
-import Navbar from '@/app/components/Navbar';
+import NavbarDark from '@/app/components/dark/Navbar';
 import Footer from '@/app/components/Footer';
 import ProjectDetailsClientWrapper from '@/app/components/projects/ProjectDetailsClientWrapper';
 
@@ -26,7 +26,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
 
   return (
     <div className="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans">
-      <Navbar />
+      <NavbarDark />
       <main>
         <ProjectDetailsClientWrapper project={project} />
       </main>
