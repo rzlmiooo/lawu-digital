@@ -1,25 +1,14 @@
 import { Suspense } from "react";
-import type { Metadata } from "next";
 import NewsDetail from "@/app/suspense/news/slug/news-slug-suspense";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import { News } from "@/app/interfaces/news-interface";
 
-export const metadata: Metadata = {
-    title: "Lawu Digital - Solusi Digitalmu",
-    description: "Mempermudah solusi digitalmu",
-};
-
-interface NewsDetailPageParams {
-  params: { slug: string }  // ✅ harus sama dengan NewsDetail
+interface PageProps {
+  params: { slug: string };
 }
 
-export default function NewsDetailPage({ params }: NewsDetailPageParams) {
+export default async function NewsDetailPage({ params }: PageProps) {
   return (
-    <Suspense fallback={
-      <div>
-        <LoadingSpinner loadingText="Loading detail berita..." />
-      </div>
-    }>
+    <Suspense fallback={<LoadingSpinner loadingText="Loading detail berita..." />}>
       <NewsDetail params={params} />
     </Suspense>
   );
