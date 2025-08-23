@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 interface ProjectGalleryProps {
   images: string[];
@@ -20,7 +21,7 @@ export default function ProjectGallery({ images }: ProjectGalleryProps) {
             whileTap={{ scale: 0.95 }}   
             transition={{ duration: 0.3 }}
           >
-            <img src={src} alt="Project screenshot" style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
+            <Image src={src.trim()} alt="Project screenshot" fill className="object-cover w-full h-full" />
           </motion.div>
         ))}
       </div>
