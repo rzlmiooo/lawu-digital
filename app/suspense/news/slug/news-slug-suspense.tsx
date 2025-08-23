@@ -4,17 +4,10 @@ import Footer from '@/app/components/Footer';
 import { notFound } from 'next/navigation';
 import purify from 'isomorphic-dompurify';
 
-interface Params {
-  slug: string;
-}
-
-interface NewsDetailProps {
-  params: Params;
-}
-
-export default async function NewsDetail({ params }: NewsDetailProps) {
+export default async function NewsDetail({ params }: { params: { slug: string } }) {
   const { slug } = params;
   const apiNewsUrl = `https://lawu-digital-server-production.up.railway.app/admin/get-slug/${slug}`;
+
 
   try {
     const res = await fetch(apiNewsUrl, { cache: 'no-store' });
@@ -23,14 +16,12 @@ export default async function NewsDetail({ params }: NewsDetailProps) {
       throw new Error('Failed to fetch news article.');
     }
 
-    // Bisa handle API ngembaliin array atau single object
     const data: News | News[] = await res.json();
-
     const articles: News[] = Array.isArray(data) ? data : [data];
 
     return (
       <div className="prose mx-auto p-6">
-        <NavbarDark/>
+        <NavbarDark />
         {articles.map((article) => (
           <div key={article.id} className="prose mx-auto p-6">
             <h1>{article.title}</h1>
@@ -47,14 +38,16 @@ export default async function NewsDetail({ params }: NewsDetailProps) {
             <div dangerouslySetInnerHTML={{ __html: purify.sanitize(article.content) }} />
           </div>
         ))}
-        <Footer/>
+        <Footer />
       </div>
     );
   } catch (error) {
     console.error('Error fetching data:', error);
     return (
       <div className="bg-white text-black min-h-screen flex items-center justify-center">
-        <p className="text-red-500">Failed to load this news article. Please try again later.</p>
+        <p className="text-red-500">
+          Failed to load this news article. Please try again later.
+        </p>
       </div>
     );
   }
