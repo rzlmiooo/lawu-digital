@@ -4,8 +4,16 @@ import Footer from '@/app/components/Footer';
 import { notFound } from 'next/navigation';
 import purify from 'isomorphic-dompurify';
 
-export default async function NewsDetail(props: { params: { slug: string } }) {
-  const { slug } = await props.params;
+interface Params {
+  slug: string;
+}
+
+interface NewsDetailProps {
+  params: Params;
+}
+
+export default async function NewsDetail({ params }: NewsDetailProps) {
+  const { slug } = params;
   const apiNewsUrl = `https://lawu-digital-server-production.up.railway.app/admin/get-slug/${slug}`;
 
   try {
@@ -15,21 +23,31 @@ export default async function NewsDetail(props: { params: { slug: string } }) {
       throw new Error('Failed to fetch news article.');
     }
 
-    const newsData: News = await res.json();
-    const sanitizedContent = purify.sanitize(newsData.content);
+    // Bisa handle API ngembaliin array atau single object
+    const data: News | News[] = await res.json();
+
+    const articles: News[] = Array.isArray(data) ? data : [data];
 
     return (
       <div className="prose mx-auto p-6">
         <NavbarDark/>
-        {newsData.map((article) => (
+        {articles.map((article) => (
           <div key={article.id} className="prose mx-auto p-6">
             <h1>{article.title}</h1>
-            <img src={article.cover_image} alt={article.title} className="rounded-xl w-full" />
-            <p className="text-gray-500">{new Date(article.published_at || 'Belum dipublikasikan').toDateString()}</p>
+            <img
+              src={article.cover_image.trimStart()}
+              alt={article.title}
+              className="rounded-xl w-full"
+            />
+            <p className="text-gray-500">
+              {article.published_at
+                ? new Date(article.published_at).toDateString()
+                : 'Belum dipublikasikan'}
+            </p>
             <div dangerouslySetInnerHTML={{ __html: purify.sanitize(article.content) }} />
           </div>
         ))}
-      <Footer/>
+        <Footer/>
       </div>
     );
   } catch (error) {
