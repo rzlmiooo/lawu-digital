@@ -10,17 +10,17 @@ export const metadata: Metadata = {
 };
 
 interface NewsDetailPageParams {
-  params: News
+  params: { slug: string }  // ✅ harus sama dengan NewsDetail
 }
 
 export default function NewsDetailPage({ params }: NewsDetailPageParams) {
   return (
     <Suspense fallback={
       <div>
-        <LoadingSpinner loadingText="Loading detail berita..."/>
+        <LoadingSpinner loadingText="Loading detail berita..." />
       </div>
     }>
-        <NewsDetail params={params} />
+      <NewsDetail params={params} />
     </Suspense>
   );
 }
