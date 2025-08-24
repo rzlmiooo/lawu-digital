@@ -23,7 +23,7 @@ export default function Home() {
               className="w-auto h-20 object-contain transition-transform duration-300 hover:scale-105 hover:animate-pulse"
             />
           </Link>
-          <ul className="flex-1 flex justify-center gap-8 text-md text-gray-400 items-center hidden md:flex">
+          <ul className="flex-1 justify-center gap-8 text-md text-gray-400 items-center hidden md:flex">
             <li><Link href='/news' className="hover:text-white transition-colors">Berita</Link></li>
             <li><Link href='/projects' className="hover:text-white transition-colors">Layanan</Link></li>
             <li><Link href='/portofolio' className="hover:text-white transition-colors">Portfolio</Link></li>
