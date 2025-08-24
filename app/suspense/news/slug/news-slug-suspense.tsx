@@ -1,15 +1,11 @@
-// app/suspense/news/slug/news-slug-suspense.tsx
 import { News } from "@/app/interfaces/news-interface";
 import NavbarDark from "@/app/components/dark/Navbar";
 import Footer from "@/app/components/Footer";
 import { notFound } from "next/navigation";
 import purify from "isomorphic-dompurify";
 
-export default async function NewsDetail({
-  params,
-}: {
-  params: { slug: string };
-}) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default async function NewsDetail({ params }: { params: { slug: any } }) {
   const { slug } = params;
   const apiNewsUrl = `https://lawu-digital-server-production.up.railway.app/admin/get-slug/${slug}`;
 
