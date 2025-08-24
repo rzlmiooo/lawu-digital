@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import purify from "isomorphic-dompurify";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default async function NewsDetail({ params }: { params: { slug: any } }) {
+export default async function NewsDetail({ params }: any ) {
   const { slug } = params;
   const apiNewsUrl = `https://lawu-digital-server-production.up.railway.app/admin/get-slug/${slug}`;
 
