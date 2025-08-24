@@ -4,7 +4,13 @@ import Footer from '@/app/components/Footer';
 import { notFound } from 'next/navigation';
 import purify from 'isomorphic-dompurify';
 
-export default async function NewsDetail({ params }: { params: { slug: string } }) {
+interface PageProps {
+  params: {
+    slug: string;
+  };
+}
+
+export default async function NewsDetail({ params }: PageProps) {
   const { slug } = params;
   const apiNewsUrl = `https://lawu-digital-server-production.up.railway.app/admin/get-slug/${slug}`;
 
