@@ -16,7 +16,7 @@ export default function Navbar() {
                             className="w-auto h-20 object-contain transition-transform duration-300 hover:scale-105 hover:animate-pulse"
                         />
                     </Link>
-                    <ul className="flex-1 flex justify-center gap-8 text-md text-gray-800 items-center hidden md:flex">
+                    <ul className="flex-1 justify-center gap-8 text-md text-gray-800 items-center hidden md:flex">
                         <li><Link href='/' className=" hover:text-gray-400 transition-colors">Beranda</Link></li>
                         <li><Link href='/news' className="hover:text-gray-400 transition-colors">Berita</Link></li>
                         <li><Link href='/projects' className="hover:text-gray-400 transition-colors">Layanan</Link></li>

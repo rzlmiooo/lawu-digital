@@ -1,17 +1,12 @@
 import Link from 'next/link';
-import { News } from '@/app/interfaces/news-interface';
+import Image from 'next/image';
 
-interface NewsCardProps {
-  blog: News;
-};
-
-export default function NewsCard({ blog }: NewsCardProps) {
-  console.log(blog);
+export default function NewsCard({ blog }: { blog: any }) {
   return (
     <Link href={`/news/${blog.slug}`}>
       <div className={`flex flex-col 'md:col-span-2' : ''}`}>
       <div className={`relative 'h-96' : 'h-64'}`}>
-        <img src={blog.cover_image} alt={blog.title} className="rounded-lg object-cover"/>
+        <img src={blog.cover_image} alt={blog.title}  style={{ objectFit: 'cover' }} className="rounded-lg"/>
       </div>
       <div className="mt-4">
         <h3 className="text-lg font-semibold">{blog.title}</h3>

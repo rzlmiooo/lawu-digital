@@ -1,7 +1,7 @@
 import { JSX } from "react";
 
 export interface News {
-    map(arg0: (article: string) => JSX.Element): import("react").ReactNode;
+    map(arg0: (article: any) => JSX.Element): import("react").ReactNode;
     id:string;
     slug:string;
     title:string;

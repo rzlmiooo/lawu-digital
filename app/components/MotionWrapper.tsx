@@ -7,7 +7,7 @@ interface MotionWrapperProps {
     children: React.ReactNode;
 }
 
-function MotionImage({ children }: MotionWrapperProps) {
+ function MotionImage({ children }: MotionWrapperProps) {
     return (
         <motion.div layoutId={`project-image-${children}`}>
             {children}
@@ -15,7 +15,7 @@ function MotionImage({ children }: MotionWrapperProps) {
     );
 }
 
-function MotionTextContent({ children }: MotionWrapperProps) {
+ function MotionTextContent({ children }: MotionWrapperProps) {
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -28,7 +28,7 @@ function MotionTextContent({ children }: MotionWrapperProps) {
     );
 }
 
-function MotionProjectDetailComponent({ children }: MotionWrapperProps) {
+ function MotionProjectDetailComponent({ children }: MotionWrapperProps) {
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}

@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-start gap-12 md:gap-20">
         <div className="flex flex-col items-center md:items-start gap-4 text-center md:text-left">
           <Link href="/">
-            <Image
+            <img
               src="/logo-light.png"
               alt="Lawu Digital Logo"
               width={150}

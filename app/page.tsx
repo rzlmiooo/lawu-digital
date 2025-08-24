@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion';
 import Footer from './components/Footer';
 import { ArrowLeftIcon, ArrowUpRightIcon } from "@heroicons/react/16/solid";
 
@@ -77,7 +77,7 @@ export default function Home() {
               Transformasi digital, <br /> tanpa ribet.
             </h1>
             <p className="mt-4 text-xl text-gray-400">
-              Unlock your business&apos;s potential with our seamless digital solutions.
+              Unlock your business's potential with our seamless digital solutions.
             </p>
             <div className="mt-8">
               <a href="#cta" className="inline-flex items-center gap-2 px-8 py-3 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-colors animate-pulse">

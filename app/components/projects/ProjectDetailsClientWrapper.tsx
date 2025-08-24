@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import { Project } from '@/app/interfaces/project-interface';
 import ProjectDetails from '@/app/components/projects/ProjectDetails';
 import ProjectGallery from '@/app/components/projects/ProjectGallery';
-import Image from 'next/image';
 
 interface ProjectDetailsClientWrapperProps {
   project: Project;
@@ -21,11 +20,11 @@ export default function ProjectDetailsClientWrapper({ project }: ProjectDetailsC
         transition={{ duration: 0.3 }}
       >
         <motion.div layoutId={`project-image-${project.id}`}>
-          <Image
-            src={project.heroImage.trim()}
+          <img
+            src={project.heroImage}
             alt={project.title}
-            fill
-            className="brightness-75 object-cover w-full h-full"
+            style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+            className="brightness-75"
           />
         </motion.div>
         <motion.div
