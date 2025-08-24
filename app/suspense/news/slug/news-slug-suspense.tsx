@@ -1,25 +1,23 @@
-import { News } from '@/app/interfaces/news-interface';
-import NavbarDark from '@/app/components/dark/Navbar';
-import Footer from '@/app/components/Footer';
-import { notFound } from 'next/navigation';
-import purify from 'isomorphic-dompurify';
+// app/suspense/news/slug/news-slug-suspense.tsx
+import { News } from "@/app/interfaces/news-interface";
+import NavbarDark from "@/app/components/dark/Navbar";
+import Footer from "@/app/components/Footer";
+import { notFound } from "next/navigation";
+import purify from "isomorphic-dompurify";
 
-interface PageProps {
-  params: {
-    slug: string;
-  };
-}
-
-export default async function NewsDetail({ params }: PageProps) {
+export default async function NewsDetail({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const { slug } = params;
   const apiNewsUrl = `https://lawu-digital-server-production.up.railway.app/admin/get-slug/${slug}`;
 
-
   try {
-    const res = await fetch(apiNewsUrl, { cache: 'no-store' });
+    const res = await fetch(apiNewsUrl, { cache: "no-store" });
     if (!res.ok) {
       if (res.status === 404) notFound();
-      throw new Error('Failed to fetch news article.');
+      throw new Error("Failed to fetch news article.");
     }
 
     const data: News | News[] = await res.json();
@@ -39,16 +37,20 @@ export default async function NewsDetail({ params }: PageProps) {
             <p className="text-gray-500">
               {article.published_at
                 ? new Date(article.published_at).toDateString()
-                : 'Belum dipublikasikan'}
+                : "Belum dipublikasikan"}
             </p>
-            <div dangerouslySetInnerHTML={{ __html: purify.sanitize(article.content) }} />
+            <div
+              dangerouslySetInnerHTML={{
+                __html: purify.sanitize(article.content),
+              }}
+            />
           </div>
         ))}
         <Footer />
       </div>
     );
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error("Error fetching data:", error);
     return (
       <div className="bg-white text-black min-h-screen flex items-center justify-center">
         <p className="text-red-500">
