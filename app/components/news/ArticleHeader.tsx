@@ -1,6 +1,12 @@
 import React from 'react';
 
-export default function ArticleHeader({ blog }: { blog: any }) {
+type BlogParams = {
+  title: string,
+  author: string,
+  published_at: string
+};
+
+export default function ArticleHeader({ blog }: { blog: BlogParams }) {
   return (
     <div className="text-center md:text-left">
       <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-2">
