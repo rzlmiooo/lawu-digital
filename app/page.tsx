@@ -8,20 +8,6 @@ import Footer from './components/Footer';
 import { ArrowLeftIcon, ArrowUpRightIcon } from "@heroicons/react/16/solid";
 
 export default function Home() {
-  const heroVariants = {
-    hidden: { opacity: 0, y: 50, scale: 0.95 },
-    visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 1.2, ease: "easeOut" } }
-  };
-
-  const sectionVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
-  };
-
-  const portfolioVariants = {
-    hidden: { opacity: 0, x: -100 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } }
-  };
   return (
     <div id="home" className="flex flex-col min-h-screen bg-gray-950 text-gray-200 font-sans overflow-x-hidden">
 

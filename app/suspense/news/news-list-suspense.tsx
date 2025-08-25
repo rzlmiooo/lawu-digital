@@ -1,5 +1,3 @@
-import { News } from "@/app/interfaces/news-interface";
-import NewsCard from '@/app/components/news/NewsCard';
 import NewsGrid from '@/app/components/news/NewsGrid';
 import Navbar from "@/app/components/light/Navbar";
 import { getNewsData } from '@/app/api/news/news';

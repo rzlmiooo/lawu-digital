@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Project } from '@/app/interfaces/project-interface';
+import Image from 'next/image';
 
 interface ProjectCardProps {
   project: Project;
@@ -19,7 +20,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       >
         <div className="relative w-full h-64 overflow-hidden rounded-lg shadow-md transition-transform duration-300">
           <motion.div layoutId={`project-image-${project.id}`}>
-            <img
+            <Image
               src={project.heroImage}
               alt={project.title}
               style={{ objectFit: 'cover', width: '100%', height: '100%' }}
