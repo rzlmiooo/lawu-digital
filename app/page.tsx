@@ -8,6 +8,11 @@ import Footer from './components/Footer';
 import { ArrowLeftIcon, ArrowUpRightIcon } from "@heroicons/react/16/solid";
 
 export default function Home() {
+  const onClick = () => {
+    const el = document.getElementById("cta");
+    el?.scrollIntoView({ behavior: "smooth" });
+  };
+  
   return (
     <div id="home" className="flex flex-col min-h-screen bg-gray-950 text-gray-200 font-sans overflow-x-hidden">
 
@@ -27,7 +32,7 @@ export default function Home() {
             <li><Link href='/news' className="hover:text-white transition-colors">Berita</Link></li>
             <li><Link href='/projects' className="hover:text-white transition-colors">Layanan</Link></li>
             <li><Link href='/portofolio' className="hover:text-white transition-colors">Portfolio</Link></li>
-            <li><Link href='#cta' className="hover:text-white transition-colors">Tentang Kami</Link></li>
+            <li><Link href='#cta' onClick={onClick} scroll={false} className="hover:text-white transition-colors">Tentang Kami</Link></li>
           </ul>
           <Link
             href='#footer'
@@ -63,19 +68,16 @@ export default function Home() {
               Transformasi digital, <br /> tanpa ribet.
             </h1>
             <p className="mt-4 text-xl text-gray-400">
-              Unlock your business&apos;s potential with our seamless digital solutions.
+              Solusi digitalisasi bisnis Anda. Bersama Lawu Digital
             </p>
             <div className="mt-8">
-              <a href="#cta" className="inline-flex items-center gap-2 px-8 py-3 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-colors animate-pulse">
-                Bersama <ArrowLeftIcon className="w-5 h-5 transform -rotate-45" />
-              </a>
+              <Link href="#cta" onClick={onClick} scroll={false} className="inline-flex items-center gap-2 px-8 py-3 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-colors animate-pulse">
+                Pesan Sekarang <ArrowLeftIcon className="w-5 h-5 transform -rotate-45" />
+              </Link>
             </div>
           </div>
         </motion.section>
         
-        
-
-
         {/* About Section with Video Background */}
         <motion.section
           className="relative container mx-auto px-4 py-24 grid md:grid-cols-2 gap-16 overflow-hidden rounded-lg shadow-xl"
@@ -100,19 +102,19 @@ export default function Home() {
           <div className="z-10 grid grid-cols-2 gap-4">
             <div className="p-8 border border-gray-700 rounded-lg flex flex-col items-start bg-gray-900 bg-opacity-70 backdrop-blur-sm transition-colors hover:bg-opacity-90">
               <h4 className="text-2xl text-gray-100 font-semibold">Website</h4>
-              <p className="mt-2 text-gray-400 text-sm">Responsive and powerful web solutions.</p>
+              <p className="mt-2 text-gray-400 text-sm">Solusi Website sederhana hingga kompleks. Jaminan uptime web 99%</p>
             </div>
             <div className="p-8 border border-gray-700 rounded-lg flex flex-col items-start bg-gray-900 bg-opacity-70 backdrop-blur-sm transition-colors hover:bg-opacity-90">
               <h4 className="text-2xl text-gray-100 font-semibold">Aplikasi</h4>
-              <p className="mt-2 text-gray-400 text-sm">Responsive and powerful mobile applications.</p>
+              <p className="mt-2 text-gray-400 text-sm">Solusi Aplikasi mobile ringan, responsive, dan realtime.</p>
             </div>
             <div className="p-8 border border-gray-700 rounded-lg flex flex-col items-start bg-gray-900 bg-opacity-70 backdrop-blur-sm transition-colors hover:bg-opacity-90">
               <h4 className="text-2xl text-gray-100 font-semibold">Desain Produk</h4>
-              <p className="mt-2 text-gray-400 text-sm">Intuitive and user-centric product design.</p>
+              <p className="mt-2 text-gray-400 text-sm">Ubah ide ada menjadi Produk yang memiliki nilai market yang kuat</p>
             </div>
             <div className="p-8 border border-gray-700 rounded-lg flex flex-col items-start bg-gray-900 bg-opacity-70 backdrop-blur-sm transition-colors hover:bg-opacity-90">
-              <h4 className="text-2xl text-gray-100 font-semibold">Desain Banner</h4>
-              <p className="mt-2 text-gray-400 text-sm">Stunning visuals for effective marketing.</p>
+              <h4 className="text-2xl text-gray-100 font-semibold">Desain<br/>Grafis</h4>
+              <p className="mt-2 text-gray-400 text-sm">Solusi kebutuhan poster, flyer, undangan, dll.</p>
             </div>
           </div>
         </motion.section>
@@ -130,8 +132,12 @@ export default function Home() {
             <h3 className="text-2xl text-gray-400">Kami belajar. Beradaptasi. Menuju puncak.</h3>
           </div>
           <div className="relative flex justify-center items-end mt-16">
-            <Image src="/sejiwa.png" alt="Sejiwa" width={400} height={400} className="w-100 h-100 object-cover object-top rounded-lg shadow-2xl transition-transform duration-300 hover:scale-105 hover:z-20"></Image>
-            <Image src="/polsek.png" alt="Polsek" width={400} height={400} className="w-100 h-100 object-cover object-top rounded-lg shadow-2xl ml-4 transition-transform duration-300 hover:scale-105 hover:z-20"></Image>
+            <Link href="https://sejiwa.my.id">
+              <Image src="/sejiwa.png" alt="Sejiwa" width={400} height={400} className="w-100 h-100 object-cover object-top rounded-lg shadow-2xl transition-transform duration-300 hover:scale-105 hover:z-20"/>
+            </Link>
+            <Link href="https://polsek-bendo.my.id">
+              <Image src="/polsek.png" alt="Polsek" width={400} height={400} className="w-100 h-100 object-cover object-top rounded-lg shadow-2xl ml-4 transition-transform duration-300 hover:scale-105 hover:z-20"/>
+            </Link>
           </div>
           <div className="flex justify-center gap-76">
             <h5 className="mt-4 text-xl text-gray-400 italic">Sejiwa App</h5>
@@ -140,7 +146,7 @@ export default function Home() {
         </motion.section>
 
         {/* CTA Section with Video Background */}
-        <section className="relative flex flex-col justify-center items-center py-32 text-center overflow-hidden rounded-lg shadow-xl">
+        <section id="cta" className="scroll-smooth scroll-mt-24 relative flex flex-col justify-center items-center py-32 text-center overflow-hidden rounded-lg shadow-xl">
           {/* Background video for this section only */}
           <video
             autoPlay
@@ -154,7 +160,7 @@ export default function Home() {
           </video>
 
           <div className="z-10 max-w-4xl">
-            <h2 id="cta" className="text-4xl md:text-5xl font-bold tracking-tight leading-tight text-white">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight text-white">
               Selanjutnya, adalah Anda.
             </h2>
             <h2 className="mt-2 text-4xl md:text-5xl font-bold tracking-tight leading-tight text-white">
@@ -162,8 +168,8 @@ export default function Home() {
             </h2>
           </div>
           <div className="z-10 mt-10">
-            <Link href="/" className="inline-flex items-center gap-2 px-8 py-3 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-colors">
-              Bersama <Image src="/logo-dark.png" alt="Logo" width={40} height={40} className="w-auto h-8"></Image> <ArrowUpRightIcon className="w-5 h-5 rotate-45" />
+            <Link href="/" className="inline-flex items-center gap-2 px-8 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-colors">
+              Bersama <Image src="/logo-light.png" alt="Logo" width={100} height={50} className="w-auto h-full aspect-16/9 object-cover"></Image> <ArrowUpRightIcon className="w-5 h-5 rotate-45" />
             </Link>
           </div>
         </section>

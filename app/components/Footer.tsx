@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-200 dark:bg-black dark:text-gray-400 mt-20 px-4 md:px-12 py-16 transition-colors duration-300">
+    <footer className="bg-gradient-to-b from-gray-600/20 to-gray-900 text-gray-200 pt-48 px-4 md:px-12 py-16 transition-colors duration-300">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-start gap-12 md:gap-20">
         <div className="flex flex-col items-center md:items-start gap-4 text-center md:text-left">
           <Link href="/">
