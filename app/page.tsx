@@ -169,7 +169,7 @@ export default function Home() {
           </div>
           <div className="z-10 mt-10">
             <Link href="/" className="inline-flex items-center gap-2 px-8 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-colors">
-              Bersama <Image src="/logo-light.png" alt="Logo" width={100} height={50} className="w-auto h-full aspect-16/9 object-cover"></Image> <ArrowUpRightIcon className="w-5 h-5 rotate-45" />
+              Bersama <Image src="/logo-light.png" alt="Logo" width={100} height={50} className="w-auto h-16 aspect-16/9 object-cover"></Image> <ArrowUpRightIcon className="w-auto h-8" />
             </Link>
           </div>
         </section>
