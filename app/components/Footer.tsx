@@ -85,7 +85,7 @@ export default function Footer() {
           {/* Address Section */}
           <div className="flex flex-col items-center sm:items-start gap-4 sm:col-span-2 md:col-span-1">
             <h3 className="font-bold text-xl mb-2">Alamat Kami</h3>
-            <p className="text-center sm:text-left px-6 sm:p-0">Ds. Pencol RT 03 RW 01, Kecamatan Kartoharjo, Kabupaten Magetan, Jawa Timur 63995</p>
+            <p className="text-center sm:text-left px-8 sm:px-0">Ds. Pencol RT 03 RW 01, Kecamatan Kartoharjo, Kabupaten Magetan, Jawa Timur 63995</p>
           </div>
         </div>
       </div>

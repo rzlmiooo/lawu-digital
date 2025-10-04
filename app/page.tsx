@@ -102,7 +102,7 @@ export default function Home() {
       <main className="relative z-10 flex flex-col">
         {/* Hero Section */}
         <motion.section
-          className="relative flex justify-center items-center p-36 text-center"
+          className="relative flex justify-center items-center p-48 sm:p-36 text-center"
           initial={{ opacity: 0, y: 50, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
@@ -150,7 +150,7 @@ export default function Home() {
             <source src="/videos/grid-futuristic-video.mp4" type="video/mp4" />
           </video>
 
-          <div className="z-10 text-gray-400 text-base sm:text-lg md:text-2xl leading-relaxed">
+          <div className="z-10 text-gray-400 text-base sm:text-lg md:text-2xl leading-relaxed p-2">
             <span className="italic text-gray-200 text-2xl sm:text-3xl font-semibold">Lawu Digital</span> adalah perusahaan startup yang bergerak pada bidang digitalisasi. Kami mendukung kemajuan teknologi daerah dengan mempercepat digitalisasi masyarakat dengan harga terjangkau, dengan kualitas pelayanan terbaik.
           </div>
           <div className="z-10 grid grid-cols-2 gap-4">
@@ -181,8 +181,8 @@ export default function Home() {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-        <div className="flex flex-col gap-2 justify-center items-center text-gray-100">
-            <h2 id="projects" className="text-3xl sm:text-5xl font-bold tracking-tight">Puncak <span className="italic font-normal">Lawu</span>, Puncak <span className="italic font-normal">Digitalisasi</span></h2>
+          <div className="flex flex-col gap-2 justify-center items-center text-gray-100">
+            <h2 id="projects" className="text-3xl sm:text-5xl font-bold tracking-tight text-center">Puncak <span className="italic font-normal">Lawu</span>, Puncak <span className="italic font-normal">Digitalisasi</span></h2>
             <h3 className="text-lg sm:text-2xl text-gray-400">Kami belajar. Beradaptasi. Menuju puncak.</h3>
           </div>
           <div className="relative flex justify-center items-end sm:mt-8">
@@ -198,7 +198,7 @@ export default function Home() {
         </motion.section>
 
         {/* CTA Section with Video Background */}
-        <section id="cta" className="scroll-smooth scroll-mt-24 relative flex flex-col justify-center items-center py-32 text-center overflow-hidden rounded-lg shadow-xl">
+        <section id="cta" className="scroll-smooth scroll-mt-24 relative flex flex-col justify-center items-center py-32 px-6 text-center overflow-hidden rounded-lg shadow-xl">
           {/* Background video for this section only */}
           <video
             autoPlay
