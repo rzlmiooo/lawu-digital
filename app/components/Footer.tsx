@@ -4,8 +4,8 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-b from-gray-600/20 to-gray-900 text-gray-200 pt-48 px-4 md:px-12 py-16 transition-colors duration-300">
-      <div className="container mx-auto flex flex-col md:flex-row justify-between items-start gap-12 md:gap-20">
+    <footer className="bg-gray-950 text-gray-200 pt-48 px-4 md:px-12 py-16 transition-colors duration-300">
+      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center sm:items-start gap-12 md:gap-20">
         <div className="flex flex-col items-center md:items-start gap-4 text-center md:text-left">
           <Link href="/">
             <Image
@@ -38,9 +38,9 @@ export default function Footer() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 md:gap-24 w-full">
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col items-center sm:items-start gap-4">
             <h3 className="font-bold text-xl mb-2">Eksplor</h3>
-            <ul className="flex flex-col gap-2">
+            <ul className="flex flex-col items-center sm:items-start gap-2">
               <li><Link href="/" className="hover:text-white transition-colors">Beranda</Link></li>
               <li><Link href="/projects" className="hover:text-white transition-colors">Portfolio</Link></li>
               <li><Link href="#cta" className="hover:text-white transition-colors">Tentang Kami</Link></li>
@@ -49,9 +49,9 @@ export default function Footer() {
           </div>
 
           {/* Contact Information */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col items-center sm:items-start gap-4">
             <h3 className="font-bold text-xl mb-2">Kontak Kami</h3>
-            <ul className="flex flex-col gap-2">
+            <ul className="flex flex-col items-center sm:items-start gap-2">
               <li>
                 <a href="mailto:sejiwa718@gmail.com" className="flex items-center gap-2 hover:text-white transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -83,9 +83,9 @@ export default function Footer() {
           </div>
 
           {/* Address Section */}
-          <div className="flex flex-col gap-4 sm:col-span-2 md:col-span-1">
+          <div className="flex flex-col items-center sm:items-start gap-4 sm:col-span-2 md:col-span-1">
             <h3 className="font-bold text-xl mb-2">Alamat Kami</h3>
-            <p>Ds. Lorem Ipsum Jalan Sigma Mewing, Kecamatan Lorem, Kabupaten Ipsum, Jawa Timur 69420</p>
+            <p className="text-center sm:text-left px-6 sm:p-0">Ds. Pencol RT 03 RW 01, Kecamatan Kartoharjo, Kabupaten Magetan, Jawa Timur 63995</p>
           </div>
         </div>
       </div>

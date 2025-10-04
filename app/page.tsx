@@ -1,11 +1,11 @@
 "use client"
 
-import React from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Footer from './components/Footer';
-import { ArrowLeftIcon, ArrowUpRightIcon } from "@heroicons/react/16/solid";
+import { ArrowLeftIcon, ArrowUpRightIcon, Bars2Icon, XMarkIcon } from "@heroicons/react/16/solid";
 
 export default function Home() {
   const onClick = () => {
@@ -13,11 +13,13 @@ export default function Home() {
     el?.scrollIntoView({ behavior: "smooth" });
   };
   
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div id="home" className="flex flex-col min-h-screen bg-gray-950 text-gray-200 font-sans overflow-x-hidden">
+    <div id="home" className="relative flex flex-col min-h-screen bg-gray-950 text-gray-200 font-sans overflow-x-hidden">
 
       {/* Header and Navigation */}
-      <header className="z-20 w-full py-6">
+      <header className="z-20 w-full py-2">
         <nav className="container mx-auto flex items-center justify-between px-4">
           <Link href="/">
             <Image
@@ -25,30 +27,82 @@ export default function Home() {
               alt="Logo"
               width={120}
               height={120}
-              className="w-auto h-20 object-contain transition-transform duration-300 hover:scale-105 hover:animate-pulse"
+              className="w-auto h-24 object-contain transition-transform duration-300 hover:scale-105 hover:animate-pulse"
             />
           </Link>
           <ul className="flex-1 justify-center gap-8 text-md text-gray-400 items-center hidden md:flex">
-            <li><Link href='/news' className="hover:text-white transition-colors">Berita</Link></li>
-            <li><Link href='/projects' className="hover:text-white transition-colors">Layanan</Link></li>
-            <li><Link href='/portofolio' className="hover:text-white transition-colors">Portfolio</Link></li>
-            <li><Link href='#cta' onClick={onClick} scroll={false} className="hover:text-white transition-colors">Tentang Kami</Link></li>
+            <li><Link href='/news' className="hover:text-gray-100 transition-colors">Berita</Link></li>
+            <li><Link href='/projects' className="hover:text-gray-100 transition-colors">Layanan</Link></li>
+            <li><Link href='/portofolio' className="hover:text-gray-100 transition-colors">Portfolio</Link></li>
+            <li><Link href='#cta' onClick={onClick} scroll={false} className="hover:text-gray-100 transition-colors">Tentang Kami</Link></li>
           </ul>
           <Link
             href='#footer'
-            className="hidden md:inline-flex items-center gap-2 px-4 py-2 bg-blue-600 bg-opacity-70 text-white font-semibold rounded-full hover:bg-blue-700 transition-colors border border-blue-600 backdrop-blur-sm"
+            className="hidden md:inline-flex items-center gap-2 px-4 py-2 bg-blue-600 bg-opacity-70 text-gray-100 font-semibold rounded-full hover:bg-blue-700 transition-colors border border-blue-600 backdrop-blur-sm"
           >
             Hubungi
             <ArrowUpRightIcon className="w-4 h-4" />
           </Link>
+          <button
+            onClick={() => {setIsOpen(true)}}
+            className='block sm:hidden'
+          >
+            <Bars2Icon
+              className="w-6 h-auto cursor-pointer"
+            />
+          </button>
         </nav>
+        <AnimatePresence>
+        {isOpen && (
+          <>
+            <motion.button 
+              key="overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => {setIsOpen(false)}}
+              className='absolute top-0 h-screen w-full backdrop-blur-sm'
+              />
+            <motion.aside 
+              key="sidebar"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="fixed top-0 right-0 h-screen w-2/3 flex flex-col justify-start items-start bg-gray-900 z-30"
+            >
+              <button 
+                onClick={() => {setIsOpen(false)}}
+                className="flex justify-end w-full py-8 px-4 cursor-pointer"
+                >
+                <XMarkIcon className="w-8 h-auto"/>
+              </button>
+              <Link href="/">
+                <Image
+                  src="/logo-light.png"
+                  alt="Logo"
+                  width={120}
+                  height={120}
+                  className="mx-4 w-auto h-32 object-contain transition-transform duration-300"
+                  />
+              </Link>
+              <ul className="flex flex-col justify-start items-start gap-4 p-6 text-lg text-gray-400">
+                <li><Link href='/news' className="hover:text-gray-100 transition-colors">Berita</Link></li>
+                <li><Link href='/projects' className="hover:text-gray-100 transition-colors">Layanan</Link></li>
+                <li><Link href='/portofolio' className="hover:text-gray-100 transition-colors">Portfolio</Link></li>
+                <li><Link href='#cta' onClick={onClick} scroll={false} className="hover:text-gray-100 transition-colors">Tentang Kami</Link></li>
+              </ul>
+              <div></div>
+            </motion.aside>
+          </>
+        )}
+        </AnimatePresence>
       </header>
 
       <main className="relative z-10 flex flex-col">
-      
         {/* Hero Section */}
         <motion.section
-          className="relative flex justify-center items-center py-40 text-center"
+          className="relative flex justify-center items-center p-36 text-center"
           initial={{ opacity: 0, y: 50, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
@@ -64,14 +118,14 @@ export default function Home() {
             <source src="/12266398_1920_1080_30fps (1).mp4" type="video/mp4" />
           </video>
           <div className="z-10 px-4 max-w-4xl">
-            <h1 className="text-white text-5xl md:text-6xl font-extrabold tracking-tight leading-tight">
+            <h1 className="text-gray-100 text-5xl md:text-6xl font-extrabold tracking-tight leading-tight">
               Transformasi digital, <br /> tanpa ribet.
             </h1>
             <p className="mt-4 text-xl text-gray-400">
               Solusi digitalisasi bisnis Anda. Bersama Lawu Digital
             </p>
             <div className="mt-8">
-              <Link href="#cta" onClick={onClick} scroll={false} className="inline-flex items-center gap-2 px-8 py-3 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-colors animate-pulse">
+              <Link href="#cta" onClick={onClick} scroll={false} className="inline-flex items-center gap-2 px-8 py-3 bg-blue-600 text-gray-100 font-semibold rounded-full hover:bg-blue-700 transition-colors animate-pulse">
                 Pesan Sekarang <ArrowLeftIcon className="w-5 h-5 transform -rotate-45" />
               </Link>
             </div>
@@ -96,8 +150,8 @@ export default function Home() {
             <source src="/videos/grid-futuristic-video.mp4" type="video/mp4" />
           </video>
 
-          <div className="z-10 text-gray-400 text-lg md:text-2xl leading-relaxed">
-            <span className="italic text-gray-200 text-3xl font-semibold">Lawu Digital</span> adalah perusahaan startup yang bergerak pada bidang digitalisasi. Kami mendukung kemajuan teknologi daerah dengan mempercepat digitalisasi masyarakat dengan harga terjangkau, dengan kualitas pelayanan terbaik.
+          <div className="z-10 text-gray-400 text-base sm:text-lg md:text-2xl leading-relaxed">
+            <span className="italic text-gray-200 text-2xl sm:text-3xl font-semibold">Lawu Digital</span> adalah perusahaan startup yang bergerak pada bidang digitalisasi. Kami mendukung kemajuan teknologi daerah dengan mempercepat digitalisasi masyarakat dengan harga terjangkau, dengan kualitas pelayanan terbaik.
           </div>
           <div className="z-10 grid grid-cols-2 gap-4">
             <div className="p-8 border border-gray-700 rounded-lg flex flex-col items-start bg-gray-900 bg-opacity-70 backdrop-blur-sm transition-colors hover:bg-opacity-90">
@@ -127,21 +181,19 @@ export default function Home() {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-        <div className="flex flex-col gap-2 justify-center items-center text-white">
-            <h2 id="projects" className="text-6xl font-bold tracking-tight">Puncak <span className="italic">Lawu</span>, Puncak <span className="italic">Digitalisasi</span></h2>
-            <h3 className="text-2xl text-gray-400">Kami belajar. Beradaptasi. Menuju puncak.</h3>
+        <div className="flex flex-col gap-2 justify-center items-center text-gray-100">
+            <h2 id="projects" className="text-3xl sm:text-5xl font-bold tracking-tight">Puncak <span className="italic font-normal">Lawu</span>, Puncak <span className="italic font-normal">Digitalisasi</span></h2>
+            <h3 className="text-lg sm:text-2xl text-gray-400">Kami belajar. Beradaptasi. Menuju puncak.</h3>
           </div>
-          <div className="relative flex justify-center items-end mt-16">
-            <Link href="https://sejiwa.my.id">
-              <Image src="/sejiwa.png" alt="Sejiwa" width={400} height={400} className="w-100 h-100 object-cover object-top rounded-lg shadow-2xl transition-transform duration-300 hover:scale-105 hover:z-20"/>
+          <div className="relative flex justify-center items-end sm:mt-8">
+            <Link href="https://sejiwa.my.id" target='_blank' className='flex flex-col items-center'>
+              <Image src="/sejiwa.png" alt="Sejiwa" width={400} height={400} className="w-full sm:w-100 h-100 object-cover object-top rounded-lg shadow-2xl transition-transform duration-300 hover:scale-105 hover:z-20"/>
+              <h5 className="mt-4 text-xl text-gray-400 italic">Sejiwa App</h5>
             </Link>
-            <Link href="https://polsek-bendo.my.id">
-              <Image src="/polsek.png" alt="Polsek" width={400} height={400} className="w-100 h-100 object-cover object-top rounded-lg shadow-2xl ml-4 transition-transform duration-300 hover:scale-105 hover:z-20"/>
+            <Link href="https://polsek-bendo.my.id" target='_blank' className='flex flex-col items-center'>
+              <Image src="/polsek.png" alt="Polsek" width={400} height={400} className="w-full sm:w-100 h-100 object-cover object-top rounded-lg shadow-2xl ml-4 transition-transform duration-300 hover:scale-105 hover:z-20"/>
+              <h5 className="mt-4 text-xl text-gray-400 italic">Polsek Bendo</h5>
             </Link>
-          </div>
-          <div className="flex justify-center gap-76">
-            <h5 className="mt-4 text-xl text-gray-400 italic">Sejiwa App</h5>
-            <h5 className="mt-4 text-xl text-gray-400 italic">Polsek Bendo</h5>
           </div>
         </motion.section>
 
@@ -153,22 +205,23 @@ export default function Home() {
             loop
             muted
             playsInline
-            className="absolute inset-0 w-full h-full object-cover opacity-20 z-0"
+            className="absolute inset-0 w-full h-full object-cover opacity-25  z-0"
           >
             {/* Using the user-provided video file */}
             <source src="/videos/blue-toggle.mp4" type="video/mp4" />
           </video>
+          <div className="absolute top-0 w-full h-full bg-gradient-to-b from-gray-950 via-white/0 to-gray-950 z-10"/>
 
           <div className="z-10 max-w-4xl">
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight text-white">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight text-gray-100">
               Selanjutnya, adalah Anda.
             </h2>
-            <h2 className="mt-2 text-4xl md:text-5xl font-bold tracking-tight leading-tight text-white">
+            <h2 className="mt-2 text-4xl md:text-5xl font-bold tracking-tight leading-tight text-gray-100">
               Wujudkan web/aplikasi impian Anda.
             </h2>
           </div>
           <div className="z-10 mt-10">
-            <Link href="/" className="inline-flex items-center gap-2 px-8 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-colors">
+            <Link href="/" className="inline-flex items-center gap-2 px-8 bg-blue-600 text-gray-100 font-semibold rounded-full hover:bg-blue-700 transition-colors">
               Bersama <Image src="/logo-light.png" alt="Logo" width={100} height={50} className="w-auto h-16 aspect-16/9 object-cover"></Image> <ArrowUpRightIcon className="w-auto h-8" />
             </Link>
           </div>
