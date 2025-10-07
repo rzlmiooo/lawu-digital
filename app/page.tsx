@@ -81,9 +81,9 @@ export default function Home() {
                 <Image
                   src="/logo-light.png"
                   alt="Logo"
-                  width={120}
-                  height={120}
-                  className="mx-4 w-auto h-32 object-contain transition-transform duration-300"
+                  width={100}
+                  height={100}
+                  className="mx-4 w-auto h-32 object-contain"
                   />
               </Link>
               <ul className="flex flex-col justify-start items-start gap-4 p-6 text-lg text-gray-400">
@@ -198,20 +198,19 @@ export default function Home() {
         </motion.section>
 
         {/* CTA Section with Video Background */}
-        <section id="cta" className="scroll-smooth scroll-mt-24 relative flex flex-col justify-center items-center py-32 px-6 text-center overflow-hidden rounded-lg shadow-xl">
+        <section id="cta" className="scroll-mt-24 relative flex flex-col justify-center items-center py-32 px-6 text-center overflow-hidden rounded-lg shadow-xl">
           {/* Background video for this section only */}
           <video
             autoPlay
             loop
             muted
             playsInline
-            className="absolute inset-0 w-full h-full object-cover opacity-25  z-0"
+            className="absolute inset-0 w-full h-full object-cover opacity-25 z-0"
           >
             {/* Using the user-provided video file */}
             <source src="/videos/blue-toggle.mp4" type="video/mp4" />
           </video>
           <div className="absolute top-0 w-full h-full bg-gradient-to-b from-gray-950 via-white/0 to-gray-950 z-10"/>
-
           <div className="z-10 max-w-4xl">
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight text-gray-100">
               Selanjutnya, adalah Anda.
@@ -222,7 +221,7 @@ export default function Home() {
           </div>
           <div className="z-10 mt-10">
             <Link href="/" className="inline-flex items-center gap-2 px-8 bg-blue-600 text-gray-100 font-semibold rounded-full hover:bg-blue-700 transition-colors">
-              Bersama <Image src="/logo-light.png" alt="Logo" width={100} height={50} className="w-auto h-16 aspect-16/9 object-cover"></Image> <ArrowUpRightIcon className="w-auto h-8" />
+              Bersama <Image src="/logo-light.png" alt="Logo" width={100} height={100} className="w-auto h-16 object-cover"></Image> <ArrowUpRightIcon className="w-auto h-8" />
             </Link>
           </div>
         </section>
