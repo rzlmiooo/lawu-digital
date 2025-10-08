@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -15,19 +15,38 @@ export default function Home() {
   
   const [isOpen, setIsOpen] = useState(false);
 
+  const [hidden, setHidden] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY && currentScrollY > 80) {
+        setHidden(true);
+      } else {
+        setHidden(false);
+      }
+      setLastScrollY(currentScrollY);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
   return (
     <div id="home" className="relative flex flex-col min-h-screen bg-gray-950 text-gray-200 font-sans overflow-x-hidden">
 
       {/* Header and Navigation */}
-      <header className="z-20 w-full py-2">
-        <nav className="container mx-auto flex items-center justify-between px-4">
+      <header className={`z-20 w-full fixed transition-transform duration-500 ${
+        hidden ? "-translate-y-full" : "translate-y-0"
+      }`}>
+        <nav className="container mx-auto flex items-center justify-between py-3 px-4 bg-gray-950">
           <Link href="/">
             <Image
               src="/logo-light.png"
               alt="Logo"
               width={120}
               height={120}
-              className="w-auto h-24 object-contain transition-transform duration-300 hover:scale-105 hover:animate-pulse"
+              className="w-auto h-12 aspect-[16/9] object-cover transition-transform duration-300 hover:scale-105 hover:animate-pulse"
             />
           </Link>
           <ul className="flex-1 justify-center gap-8 text-md text-gray-400 items-center hidden md:flex">
@@ -61,7 +80,7 @@ export default function Home() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => {setIsOpen(false)}}
-              className='absolute top-0 h-screen w-full backdrop-blur-sm'
+              className='fixed top-0 h-screen w-full bg-black/50 z-30'
               />
             <motion.aside 
               key="sidebar"
@@ -69,11 +88,11 @@ export default function Home() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed top-0 right-0 h-screen w-2/3 flex flex-col justify-start items-start bg-gray-900 z-30"
+              className="fixed top-0 right-0 h-screen w-2/3 flex flex-col justify-start items-start bg-gray-900 z-40"
             >
               <button 
                 onClick={() => {setIsOpen(false)}}
-                className="flex justify-end w-full py-8 px-4 cursor-pointer"
+                className="flex justify-end w-full py-10 px-4 cursor-pointer z-50"
                 >
                 <XMarkIcon className="w-8 h-auto"/>
               </button>
@@ -102,7 +121,7 @@ export default function Home() {
       <main className="relative z-10 flex flex-col">
         {/* Hero Section */}
         <motion.section
-          className="relative flex justify-center items-center p-48 sm:p-36 text-center"
+          className="relative flex justify-center items-center px-48 py-64 sm:px-36 sm:py-64 text-center"
           initial={{ opacity: 0, y: 50, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
@@ -113,6 +132,7 @@ export default function Home() {
             loop
             muted
             playsInline
+            preload="metadata"
             className="absolute inset-0 w-full h-full object-cover opacity-10 z-0"
           >
             <source src="/12266398_1920_1080_30fps (1).mp4" type="video/mp4" />
@@ -145,6 +165,7 @@ export default function Home() {
             loop
             muted
             playsInline
+            preload="metadata"
             className="absolute inset-0 w-full h-full object-cover opacity-20 z-0"
           >
             <source src="/videos/grid-futuristic-video.mp4" type="video/mp4" />
@@ -198,25 +219,26 @@ export default function Home() {
         </motion.section>
 
         {/* CTA Section with Video Background */}
-        <section id="cta" className="scroll-mt-24 relative flex flex-col justify-center items-center py-32 px-6 text-center overflow-hidden rounded-lg shadow-xl">
+        <section id="cta" className="scroll-mt-24 relative flex flex-col justify-center items-center py-32 px-6 text-center overflow-hidden">
           {/* Background video for this section only */}
           <video
             autoPlay
             loop
             muted
             playsInline
-            className="absolute inset-0 w-full h-full object-cover opacity-25 z-0"
+            preload="metadata"
+            className="absolute inset-0 w-full h-11/12 object-cover z-0"
           >
             {/* Using the user-provided video file */}
             <source src="/videos/blue-toggle.mp4" type="video/mp4" />
           </video>
-          <div className="absolute top-0 w-full h-full bg-gradient-to-b from-gray-950 via-white/0 to-gray-950 z-10"/>
+          <div className="absolute top-0 w-full h-full bg-gradient-to-b from-gray-950 via-gray-950/75 to-gray-950 z-10"/>
           <div className="z-10 max-w-4xl">
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight text-gray-100">
               Selanjutnya, adalah Anda.
             </h2>
             <h2 className="mt-2 text-4xl md:text-5xl font-bold tracking-tight leading-tight text-gray-100">
-              Wujudkan web/aplikasi impian Anda.
+              Wujudkan web & aplikasi impian Anda.
             </h2>
           </div>
           <div className="z-10 mt-10">

@@ -13,7 +13,7 @@ export default function Footer() {
               alt="Lawu Digital Logo"
               width={150}
               height={75}
-              className="object-contain"
+              className="object-cover aspect-[16/9]"
             />
           </Link>
           <p className="text-sm">© 2025 Lawu Digital</p>
