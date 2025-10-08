@@ -126,17 +126,6 @@ export default function Home() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
         >
-          {/* Background video for the Hero section */}
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            className="absolute inset-0 w-full h-full object-cover opacity-10 z-0"
-          >
-            <source src="/12266398_1920_1080_30fps (1).mp4" type="video/mp4" />
-          </video>
           <div className="z-10 px-4 max-w-4xl">
             <h1 className="text-gray-100 text-5xl md:text-6xl font-extrabold tracking-tight leading-tight">
               Transformasi digital, <br /> tanpa ribet.
@@ -168,7 +157,7 @@ export default function Home() {
             preload="metadata"
             className="absolute inset-0 w-full h-full object-cover opacity-20 z-0"
           >
-            <source src="/videos/grid-futuristic-video.mp4" type="video/mp4" />
+            <source src="https://res.cloudinary.com/dinw0wb0b/video/upload/v1759917139/grid-futuristic-video_xtb8m5.mp4" type="video/mp4" />
           </video>
 
           <div className="z-10 text-gray-400 text-base sm:text-lg md:text-2xl leading-relaxed p-2">
@@ -230,7 +219,7 @@ export default function Home() {
             className="absolute inset-0 w-full h-11/12 object-cover z-0"
           >
             {/* Using the user-provided video file */}
-            <source src="/videos/blue-toggle.mp4" type="video/mp4" />
+            <source src="https://res.cloudinary.com/dinw0wb0b/video/upload/v1759917101/blue-toggle_tpyxfg.mp4" type="video/mp4" />
           </video>
           <div className="absolute top-0 w-full h-full bg-gradient-to-b from-gray-950 via-gray-950/75 to-gray-950 z-10"/>
           <div className="z-10 max-w-4xl">
