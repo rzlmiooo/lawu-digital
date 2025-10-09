@@ -1,44 +1,107 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
-import Footer from './components/Footer';
-import { ArrowLeftIcon, ArrowUpRightIcon, Bars2Icon, XMarkIcon } from "@heroicons/react/16/solid";
+import { useState, useEffect, useCallback, memo } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  ArrowLeftIcon,
+  ArrowUpRightIcon,
+  Bars2Icon,
+  XMarkIcon,
+} from "@heroicons/react/16/solid";
+import Footer from "./components/Footer";
+
+const Sidebar = memo(({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => (
+  <AnimatePresence>
+    {isOpen && (
+      <>
+        <motion.button
+          key="overlay"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={onClose}
+          className="fixed inset-0 bg-black/50 z-30"
+        />
+        <motion.aside
+          key="sidebar"
+          initial={{ x: "100%" }}
+          animate={{ x: 0 }}
+          exit={{ x: "100%" }}
+          transition={{ type: "spring", stiffness: 260, damping: 30 }}
+          className="fixed top-0 right-0 h-screen w-2/3 flex flex-col justify-start items-start bg-gray-900 z-40"
+        >
+          <button onClick={onClose} className="flex justify-end w-full py-5 pb-24 px-4 cursor-pointer">
+            <XMarkIcon className="w-8 h-auto" />
+          </button>
+
+          <Link href="/">
+            <Image
+              src="/logo-light.png"
+              alt="Logo"
+              width={100}
+              height={100}
+              className="mx-4 w-auto h-32 object-contain"
+            />
+          </Link>
+
+          <ul className="flex flex-col justify-start items-start gap-4 p-6 text-lg text-gray-400">
+            <li><Link href="/news" className="hover:text-gray-100 transition-colors">Berita</Link></li>
+            <li><Link href="/projects" className="hover:text-gray-100 transition-colors">Layanan</Link></li>
+            <li><Link href="/portofolio" className="hover:text-gray-100 transition-colors">Portfolio</Link></li>
+            <li>
+              <Link href="#cta" scroll={false} className="hover:text-gray-100 transition-colors">
+                Tentang Kami
+              </Link>
+            </li>
+          </ul>
+        </motion.aside>
+      </>
+    )}
+  </AnimatePresence>
+));
+Sidebar.displayName = "Sidebar";
 
 export default function Home() {
-  const onClick = () => {
-    const el = document.getElementById("cta");
-    el?.scrollIntoView({ behavior: "smooth" });
-  };
-  
   const [isOpen, setIsOpen] = useState(false);
-
   const [hidden, setHidden] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
+
+  const onClick = useCallback(() => {
+    document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" });
+  }, []);
+
+  const handleOpen = useCallback(() => setIsOpen(true), []);
+  const handleClose = useCallback(() => setIsOpen(false), []);
 
   useEffect(() => {
+    let lastY = window.scrollY;
+    let ticking = false;
+
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY && currentScrollY > 80) {
-        setHidden(true);
-      } else {
-        setHidden(false);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentY = window.scrollY;
+          setHidden(currentY > lastY && currentY > 80);
+          lastY = currentY;
+          ticking = false;
+        });
+        ticking = true;
       }
-      setLastScrollY(currentScrollY);
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   return (
-    <div id="home" className="relative flex flex-col min-h-screen bg-gray-950 text-gray-200 font-sans overflow-x-hidden">
-
-      {/* Header and Navigation */}
-      <header className={`z-20 w-full fixed transition-transform duration-500 ${
-        hidden ? "-translate-y-full" : "translate-y-0"
-      }`}>
+    <div className="relative flex flex-col min-h-screen bg-gray-950 text-gray-200 overflow-x-hidden">
+      {/* Header */}
+      <header
+        className={`z-20 w-full fixed transition-transform duration-500 ${
+          hidden ? "-translate-y-full" : "translate-y-0"
+        }`}
+      >
         <nav className="container mx-auto flex items-center justify-between py-3 px-4 bg-gray-950">
           <Link href="/">
             <Image
@@ -46,82 +109,41 @@ export default function Home() {
               alt="Logo"
               width={120}
               height={120}
-              className="w-auto h-12 aspect-[16/9] object-cover transition-transform duration-300 hover:scale-105 hover:animate-pulse"
+              className="w-auto h-12 aspect-[16/9] object-cover transition-transform duration-300 hover:scale-105"
             />
           </Link>
+
           <ul className="flex-1 justify-center gap-8 text-md text-gray-400 items-center hidden md:flex">
-            <li><Link href='/news' className="hover:text-gray-100 transition-colors">Berita</Link></li>
-            <li><Link href='/projects' className="hover:text-gray-100 transition-colors">Layanan</Link></li>
-            <li><Link href='/portofolio' className="hover:text-gray-100 transition-colors">Portfolio</Link></li>
-            <li><Link href='#cta' onClick={onClick} scroll={false} className="hover:text-gray-100 transition-colors">Tentang Kami</Link></li>
+            <li><Link href="/news" className="hover:text-gray-100">Berita</Link></li>
+            <li><Link href="/projects" className="hover:text-gray-100">Layanan</Link></li>
+            <li><Link href="/portofolio" className="hover:text-gray-100">Portfolio</Link></li>
+            <li>
+              <Link href="#cta" onClick={onClick} scroll={false} className="hover:text-gray-100">
+                Tentang Kami
+              </Link>
+            </li>
           </ul>
+
           <Link
-            href='#footer'
+            href="#footer"
             className="hidden md:inline-flex items-center gap-2 px-4 py-2 bg-blue-600 bg-opacity-70 text-gray-100 font-semibold rounded-full hover:bg-blue-700 transition-colors border border-blue-600 backdrop-blur-sm"
           >
             Hubungi
             <ArrowUpRightIcon className="w-4 h-4" />
           </Link>
-          <button
-            onClick={() => {setIsOpen(true)}}
-            className='block sm:hidden'
-          >
-            <Bars2Icon
-              className="w-6 h-auto cursor-pointer"
-            />
+
+          <button onClick={handleOpen} className="block sm:hidden">
+            <Bars2Icon className="w-6 h-auto cursor-pointer" />
           </button>
         </nav>
-        <AnimatePresence>
-        {isOpen && (
-          <>
-            <motion.button 
-              key="overlay"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => {setIsOpen(false)}}
-              className='fixed top-0 h-screen w-full bg-black/50 z-30'
-              />
-            <motion.aside 
-              key="sidebar"
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed top-0 right-0 h-screen w-2/3 flex flex-col justify-start items-start bg-gray-900 z-40"
-            >
-              <button 
-                onClick={() => {setIsOpen(false)}}
-                className="flex justify-end w-full py-10 px-4 cursor-pointer z-50"
-                >
-                <XMarkIcon className="w-8 h-auto"/>
-              </button>
-              <Link href="/">
-                <Image
-                  src="/logo-light.png"
-                  alt="Logo"
-                  width={100}
-                  height={100}
-                  className="mx-4 w-auto h-32 object-contain"
-                  />
-              </Link>
-              <ul className="flex flex-col justify-start items-start gap-4 p-6 text-lg text-gray-400">
-                <li><Link href='/news' className="hover:text-gray-100 transition-colors">Berita</Link></li>
-                <li><Link href='/projects' className="hover:text-gray-100 transition-colors">Layanan</Link></li>
-                <li><Link href='/portofolio' className="hover:text-gray-100 transition-colors">Portfolio</Link></li>
-                <li><Link href='#cta' onClick={onClick} scroll={false} className="hover:text-gray-100 transition-colors">Tentang Kami</Link></li>
-              </ul>
-              <div></div>
-            </motion.aside>
-          </>
-        )}
-        </AnimatePresence>
       </header>
+
+      <Sidebar isOpen={isOpen} onClose={handleClose} />
 
       <main className="relative z-10 flex flex-col">
         {/* Hero Section */}
         <motion.section
-          className="relative flex justify-center items-center px-48 py-64 sm:px-36 sm:py-64 text-center"
+          className="relative flex justify-center items-center px-48 py-68 sm:px-36 sm:py-68 text-center"
           initial={{ opacity: 0, y: 50, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
