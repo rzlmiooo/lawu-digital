@@ -14,9 +14,9 @@ export default async function NewsListPage() {
   }
 
   return (
-    <div className="bg-gray-50 text-gray-800 font-sans">
+    <div className="bg-gray-950 text-gray-100 font-sans">
       <Navbar/>
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-6 py-8 pt-20">
         <Hero />
 
         <NewsGrid newsData={newsData} />

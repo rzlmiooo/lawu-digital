@@ -31,7 +31,9 @@ export default async function NewsDetail({ params }: { params: SlugParams }) {
             <Image
               src={article.cover_image}
               alt={article.title}
-              className="rounded-xl w-full"
+              width={400}
+              height={300}
+              className="rounded-xl aspect-[4/3] object-cover"
             />
             <p className="text-gray-500">
               {new Date(article.published_at).toDateString()}

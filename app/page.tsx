@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, memo } from "react";
+import { useState, useEffect, useCallback, useRef, memo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -94,6 +94,19 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { threshold: 0.2 }
+    );
+
+    if (videoRef.current) observer.observe(videoRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="relative flex flex-col min-h-screen bg-gray-950 text-gray-200 overflow-x-hidden">
       {/* Header */}
@@ -172,6 +185,7 @@ export default function Home() {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
            <video
+            ref={videoRef}
             autoPlay
             loop
             muted
@@ -233,6 +247,7 @@ export default function Home() {
         <section id="cta" className="scroll-mt-24 relative flex flex-col justify-center items-center py-32 px-6 text-center overflow-hidden">
           {/* Background video for this section only */}
           <video
+            ref={videoRef}
             autoPlay
             loop
             muted

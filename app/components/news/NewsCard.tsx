@@ -21,7 +21,7 @@ export default function NewsCard({ blog }: { blog: BlogParams }) {
     <Link href={`/news/${blog.slug}`}>
       <div className={`flex flex-col 'md:col-span-2' : ''}`}>
         <div className={`relative 'h-96' : 'h-64'}`}>
-          <Image src={blog.cover_image} alt={blog.title} style={{ objectFit: 'cover' }} className="rounded-lg" />
+          <Image src={blog.cover_image} alt={blog.title} width={400} height={300} className="rounded-lg aspect-[4/3] object-cover" />
         </div>
         <div className="mt-4">
           <h3 className="text-lg font-semibold">{blog.title}</h3>
